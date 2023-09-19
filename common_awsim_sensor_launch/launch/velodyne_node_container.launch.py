@@ -76,7 +76,7 @@ def launch_setup(context, *args, **kwargs):
             plugin="pointcloud_preprocessor::CropBoxFilterComponent",
             name="crop_box_filter_self",
             remappings=[
-                ("input", "pointcloud_raw_ex"),
+                ("input", "points_raw"),
                 ("output", "self_cropped/pointcloud_ex"),
             ],
             parameters=[cropbox_parameters],
