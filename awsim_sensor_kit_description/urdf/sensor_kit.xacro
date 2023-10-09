@@ -201,7 +201,7 @@
 
     <!-- gnss -->
     <xacro:imu_macro
-      name="gps_link"
+      name="gnss"
       parent="base_link"
       namespace=""
       x="0.2"
