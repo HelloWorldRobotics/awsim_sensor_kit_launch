@@ -24,27 +24,38 @@
     <xacro:property name="calibration" value="${xacro.load_yaml('$(arg config_dir)/sensor_kit_calibration.yaml')}"/>
 
     <!-- lidar Unity [z,x,y] = [x,y,z] in ROS--> 
-    <xacro:VLS-128 parent="base_link" name="velodyne" topic="/points_raw" hz="10" samples="220" gpu="$(arg gpu)">
+    <xacro:VLS-128 parent="base_link" name="velodyne_top" topic="/points_raw/top" hz="10" samples="220" gpu="$(arg gpu)">
       <origin
-        xyz="0.2202 
-        0
-        0.6781"
+        xyz="-0.478
+        0.0125
+        1.952"
         rpy="0
         0
-        4.712"
+        3.141592"
       />
     </xacro:VLS-128>
 
-    <!-- <xacro:VLS-128 parent="base_link" name="velodyne2" topic="/points_raw2" hz="10" samples="220" gpu="$(arg gpu)">
+    <xacro:VLS-128 parent="base_link" name="velodyne_left" topic="/sensing/lidar/left/points_raw" hz="10" samples="220" gpu="$(arg gpu)">
       <origin
-        xyz="0.2202 
-        0
-        0.6781"
-        rpy="0
-        0
-        4.712"
+        xyz="3.105 
+          0.535
+          1.226"
+          rpy="0
+          0
+          0.1"
       />
-    </xacro:VLS-128> -->
+    </xacro:VLS-128>
+
+    <xacro:VLS-128 parent="base_link" name="velodyne_right" topic="/sensing/lidar/right/points_raw" hz="10" samples="220" gpu="$(arg gpu)">
+      <origin
+          xyz="3.105 
+          -0.535
+          1.226"
+          rpy="0
+          0
+          0"
+      />
+    </xacro:VLS-128>
 
     <!-- <xacro:VLS-128 parent="base_link" name="zed2i_left_camera_frame" topic="/zed2i/zed_node/point_cloud/cloud_registered" hz="10" samples="220" gpu="$(arg gpu)">
       <origin
@@ -215,12 +226,12 @@
 
     <!-- imu -->
     <xacro:imu_macro
-      name="imu"
+      name="zed_imu"
       parent="base_link"
       namespace=""
-      x="0.20479"
-      y="0.13368"
-      z="0.15538"
+      x="3.0"
+      y="0"
+      z="1.0"
       roll="0"
       pitch="0"
       yaw="0"

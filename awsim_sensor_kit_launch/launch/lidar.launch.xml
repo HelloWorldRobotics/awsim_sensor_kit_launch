@@ -5,6 +5,10 @@
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
   <arg name="use_distortion_corrector" default="true"/>
 
+  <arg name="input_lidars" default="['/sensing/lidar/top/points_raw',
+                                    '/sensing/lidar/left/points_raw',
+                                    '/sensing/lidar/right/points_raw']"/>
+
   <group>
     <push-ros-namespace namespace="lidar"/>
 
@@ -30,6 +34,9 @@
       <arg name="use_multithread" value="true"/>
       <arg name="use_pointcloud_container" value="$(var use_pointcloud_container)"/>
       <arg name="container_name" value="$(var pointcloud_container_name)"/>
+
+      <arg name="input_topics" value="$(var input_lidars)"/>
+
     </include>
   </group>
 </launch>

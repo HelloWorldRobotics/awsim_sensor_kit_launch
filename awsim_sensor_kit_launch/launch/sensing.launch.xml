@@ -5,6 +5,13 @@
   <arg name="use_pointcloud_container" default="false" description="launch pointcloud container"/>
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
   <arg name="use_distortion_corrector" default="false" description="compensate the point cloud distortion caused by vehicle movement"/>
+  <arg name="input_lidars" default="['/sensing/lidar/top/points_raw',
+                                      '/sensing/lidar/left/points_raw',
+                                      '/sensing/lidar/right/points_raw']"/>
+
+  <arg name="input_vehicle_velocity_topic" default="/buggy_odom" description="odometry topic"/>      
+  <arg name="wheel_base" default="3.29"/>
+  <arg name="use_differential_drive" default="false"/>                  
 
   <group>
     <!-- LiDAR Driver -->
@@ -13,6 +20,7 @@
       <arg name="use_pointcloud_container" value="$(var use_pointcloud_container)"/>
       <arg name="pointcloud_container_name" value="$(var pointcloud_container_name)"/>
       <arg name="use_distortion_corrector" value="$(var use_distortion_corrector)"/>
+      <arg name="input_lidars" value="$(var input_lidars)"/>
     </include>
 
     <!-- Camera Driver -->
@@ -26,8 +34,10 @@
 
     <!-- Vehicle Velocity Converter  -->
     <include file="$(find-pkg-share vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
-      <arg name="input_vehicle_velocity_topic" value="/odometry/filtered"/>
+      <arg name="input_vehicle_velocity_topic" value="$(var input_vehicle_velocity_topic)"/> 
       <arg name="output_twist_with_covariance" value="/sensing/vehicle_velocity_converter/twist_with_covariance"/>
+      <arg name="wheel_base" value="$(var wheel_base)" />
+      <arg name="use_differential_drive" value="$(var use_differential_drive)" />
     </include>
   </group>
 </launch>

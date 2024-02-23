@@ -35,10 +35,7 @@ def launch_setup(context, *args, **kwargs):
         remappings=[("output", "/sensing/lidar/concatenated/pointcloud")],
         parameters=[
             {
-                "input_topics": [
-                    "/sensing/lidar/left/outlier_filtered/pointcloud",
-                    "/sensing/lidar/right/outlier_filtered/pointcloud"
-                ],
+                "input_topics": LaunchConfiguration("input_topics"),
                 "output_frame": LaunchConfiguration("base_frame"),
                 "timeout_sec": 0.01,
             }
@@ -85,6 +82,8 @@ def generate_launch_description():
     add_launch_arg("use_intra_process", "False")
     add_launch_arg("use_pointcloud_container", "False")
     add_launch_arg("container_name", "pointcloud_preprocessor_container")
+    add_launch_arg("input_topics", "['/points_raw/top', '/points_raw/left', '/points_raw/right']")
+
 
     set_container_executable = SetLaunchConfiguration(
         "container_executable",
