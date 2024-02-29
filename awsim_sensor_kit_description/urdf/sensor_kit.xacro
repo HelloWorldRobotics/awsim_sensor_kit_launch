@@ -226,6 +226,20 @@
 
     <!-- imu -->
     <xacro:imu_macro
+      name="zed_camera"
+      parent="base_link"
+      namespace=""
+      x="3.0"
+      y="0"
+      z="1.0"
+      roll="0"
+      pitch="0"
+      yaw="0"
+      fps="100"
+    />
+
+  <!-- imu in rosbag-->
+    <xacro:imu_macro
       name="zed_imu"
       parent="base_link"
       namespace=""
