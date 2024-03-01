@@ -212,12 +212,12 @@
 
     <!-- gnss -->
     <xacro:imu_macro
-      name="gnss"
+      name="gps"
       parent="base_link"
       namespace=""
-      x="0.2"
+      x="0.5"
       y="0"
-      z="0.2"
+      z="1.952"
       roll="0"
       pitch="0"
       yaw="0"
@@ -226,7 +226,7 @@
 
     <!-- imu -->
     <xacro:imu_macro
-      name="zed_camera"
+      name="zed_camera_link"
       parent="base_link"
       namespace=""
       x="3.0"
@@ -240,7 +240,7 @@
 
   <!-- imu in rosbag-->
     <xacro:imu_macro
-      name="zed_imu"
+      name="zed_imu_link"
       parent="base_link"
       namespace=""
       x="3.0"
